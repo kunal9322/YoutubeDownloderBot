@@ -1,0 +1,32 @@
+{
+    "name": "Youtube Bot",
+    "description": "A Normal Telegram Bot Which can ",
+    "keywords": ["Telegram","python", "Youtube","Downloder","Vedio","Audio"],
+    "repository": "https://github.com/kaif-00z/YoutubeDownloderBot",
+    "stack": "container",
+    "env": {
+        "API_ID": {
+            "description": "You api id, from my.telegram.org or @apiScrapperRoBot.",
+            "value": ""
+        },
+        "API_HASH": {
+            "description": "You api hash, from my.telegram.org or @apiScrapperRoBot.",
+            "value": ""
+        },
+        "BOT_TOKEN": {
+            "description": "Make a bot from @BotFather, and enter it's api token here.",
+            "value": ""
+        },
+        "OWNER_ID": {
+            "description": "Get your Id Of Telegram and Paste Here.",
+            "value": "",
+            "required": false
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python",
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ]
+}
