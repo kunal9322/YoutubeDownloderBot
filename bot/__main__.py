@@ -20,7 +20,7 @@ async def ping(event):
 @bot.on(events.NewMessage(pattern="/start"))
 async def start(event):
     await event.reply(
-        f"Hi `{event.sender.first_name}`\n🗡️This is a Youtube Vedio and Audio downloader Bot🗡️.",
+        f"Hi `{event.sender.first_name}`\n🛡️This is a Youtube Vedio and Audio downloader Bot🛡️.",
         buttons=[
             [Button.inline("HOW TO USE", data="usei")],
             [
@@ -78,11 +78,14 @@ async def vedio(event):
             event.chat_id,
             "`fetching data from youtube...`"
     )
-    ydl_opts = {}
+    ydl_opts = {
+        "format": "best",
+        "outtmpl": "%(id)s.mp4",
+    }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         down_ved = ydl.download([f'{link}'])
         info_dict = ydl.extract_info(link, download=False)
-        vedio_title = info_dict.get('id') + ".mp3"
+        vedio_title = info_dict.get('id') + ".mp4"
     await bot.send_file(event.chat_id, vedio_title)
 
 @bot.on(events.callbackquery.CallbackQuery(data="usei"))
@@ -94,8 +97,8 @@ async def usei(event):
 
 @bot.on(events.callbackquery.CallbackQuery(data="back"))
 async def reback(event):
-    await bot.send_message(
-        f"Hi `{event.sender.first_name}`\n🗡️This is a Youtube Vedio and Audio downloader Bot🗡️.",
+    await event.edit(
+        f"Hi `{event.sender.first_name}`\n🛡️This is a Youtube Vedio and Audio downloader Bot🛡️.",
         buttons=[
             [Button.inline("HOW TO USE", data="usei")],
             [
