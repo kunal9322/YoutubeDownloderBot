@@ -74,7 +74,7 @@ async def audio(event):
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"vedio(.*)")))
 async def vedio(event):
     link = event.pattern_match.group(1).decode("UTF-8")
-    await event.reply(
+    await bot.send_message(
             event.chat_id,
             "`fetching data from youtube...`"
     )
