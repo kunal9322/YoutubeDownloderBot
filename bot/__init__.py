@@ -1,6 +1,7 @@
 # by <@kaif-00z>
 
 from telethon import Button, TelegramClient, errors, events
+from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 import asyncio
 import sys
 import io

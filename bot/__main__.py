@@ -68,8 +68,17 @@ async def audio(event):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         down_aud = ydl.download([f'{link}'])
         info_dict = ydl.extract_info(link, download=False)
-        audio_title = info_dict.get('id') + ".mp3"
-    await bot.send_file(event.chat_id, audio_title)
+        audio_title = info_dict.get('title', None)
+        audio_duration = info_dict.get('duration' ,None)
+        audio_id = info_dict.get('id') + ".mp3"
+    await bot.send_file(event.chat_id, audio_id, supports_streaming=True,
+             attributes=[
+                DocumentAttributeAudio(
+                    title = audio_title,
+                    duration = audio_duration,
+                )
+            ],
+    )
 
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"vedio(.*)")))
 async def vedio(event):
@@ -85,8 +94,20 @@ async def vedio(event):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         down_ved = ydl.download([f'{link}'])
         info_dict = ydl.extract_info(link, download=False)
-        vedio_title = info_dict.get('id') + ".mp4"
-    await bot.send_file(event.chat_id, vedio_title)
+        vedio_duration = info_dict.get('duration', None)
+        vedio_height = info_dict.get('height', None)
+        vedio_width = info_dict.get('width', None)
+        vedio_id = info_dict.get('id') + ".mp4"
+    await bot.send_file(event.chat_id, vedio_id,
+             attributes=[
+                DocumentAttributeVideo(
+                    duration=vedio_duration,
+                    w=vedio_width,
+                    h=vedio_height,
+                    supports_streaming=True,
+                )
+            ],
+    )
 
 @bot.on(events.callbackquery.CallbackQuery(data="usei"))
 async def usei(event):
