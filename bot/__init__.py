@@ -1,16 +1,16 @@
 # by <@kaif-00z>
 
-from telethon import Button, TelegramClient, errors, events
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 import asyncio
-import sys
 import io
+import sys
 import time
 import traceback
+
 import youtube_dl
+from telethon import Button, TelegramClient, errors, events
+from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
 from .config import *
-
 
 try:
     bot = TelegramClient(None, API_ID, API_HASH)

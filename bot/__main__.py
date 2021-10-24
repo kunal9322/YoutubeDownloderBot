@@ -1,7 +1,8 @@
 # by <@kaif-00z>
 
-from . import *
 import re
+
+from . import *
 
 print("Starting...")
 
@@ -10,12 +11,14 @@ try:
 except Exception as exc:
     print(exc)
 
+
 @bot.on(events.NewMessage(pattern="/ping"))
 async def ping(event):
     t = time.time()
     x = await event.reply("`PONG!!!`")
     tt = time.time() - t
     await x.edit(f"`PONG: {float(str(tt))*1000}ms`")
+
 
 @bot.on(events.NewMessage(pattern="/start"))
 async def start(event):
@@ -24,17 +27,21 @@ async def start(event):
         buttons=[
             [Button.inline("HOW TO USE", data="usei")],
             [
-                Button.url("SOURCE CODE", url="https://github.com/kaif-00z/YoutubeDownloderBot"),
+                Button.url(
+                    "SOURCE CODE", url="https://github.com/kaif-00z/YoutubeDownloderBot"
+                ),
                 Button.url("DEVELOPER", url="https://t.me/Kaif_00z"),
             ],
         ],
     )
+
 
 @bot.on(events.NewMessage(pattern="/help"))
 async def help(event):
     await event.reply(
         "🔮This Bot Download Youtube Vedio and Audio.\n🔮Bot take some time to download plz keep patience."
     )
+
 
 @bot.on(events.NewMessage(pattern="/yt ?(.*)"))
 async def yt(event):
@@ -49,65 +56,69 @@ async def yt(event):
         ],
     )
 
+
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"audio(.*)")))
 async def audio(event):
     link = event.pattern_match.group(1).decode("UTF-8")
-    await bot.send_message(
-            event.chat_id,
-            "`fetching data from youtube...`"
-    )
+    await bot.send_message(event.chat_id, "`fetching data from youtube...`")
     ydl_opts = {
-        'format': 'bestaudio/best',
+        "format": "bestaudio/best",
         "outtmpl": "%(id)s.mp3",
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
+        "postprocessors": [
+            {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",
+                "preferredquality": "192",
+            }
+        ],
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        down_aud = ydl.download([f'{link}'])
+        ydl.download([f"{link}"])
         info_dict = ydl.extract_info(link, download=False)
-        audio_title = info_dict.get('title', None)
-        audio_duration = info_dict.get('duration' ,None)
-        audio_id = info_dict.get('id') + ".mp3"
-    await bot.send_file(event.chat_id, audio_id, supports_streaming=True,
-             attributes=[
-                DocumentAttributeAudio(
-                    title = audio_title,
-                    duration = audio_duration,
-                )
-            ],
+        audio_title = info_dict.get("title", None)
+        audio_duration = info_dict.get("duration", None)
+        audio_id = info_dict.get("id") + ".mp3"
+    await bot.send_file(
+        event.chat_id,
+        audio_id,
+        supports_streaming=True,
+        attributes=[
+            DocumentAttributeAudio(
+                title=audio_title,
+                duration=audio_duration,
+            )
+        ],
     )
+
 
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"vedio(.*)")))
 async def vedio(event):
     link = event.pattern_match.group(1).decode("UTF-8")
-    await bot.send_message(
-            event.chat_id,
-            "`fetching data from youtube...`"
-    )
+    await bot.send_message(event.chat_id, "`fetching data from youtube...`")
     ydl_opts = {
         "format": "best",
         "outtmpl": "%(id)s.mp4",
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        down_ved = ydl.download([f'{link}'])
+        ydl.download([f"{link}"])
         info_dict = ydl.extract_info(link, download=False)
-        vedio_duration = info_dict.get('duration', None)
-        vedio_height = info_dict.get('height', None)
-        vedio_width = info_dict.get('width', None)
-        vedio_id = info_dict.get('id') + ".mp4"
-    await bot.send_file(event.chat_id, vedio_id,
-             attributes=[
-                DocumentAttributeVideo(
-                    duration=vedio_duration,
-                    w=vedio_width,
-                    h=vedio_height,
-                    supports_streaming=True,
-                )
-            ],
+        vedio_duration = info_dict.get("duration", None)
+        vedio_height = info_dict.get("height", None)
+        vedio_width = info_dict.get("width", None)
+        vedio_id = info_dict.get("id") + ".mp4"
+    await bot.send_file(
+        event.chat_id,
+        vedio_id,
+        attributes=[
+            DocumentAttributeVideo(
+                duration=vedio_duration,
+                w=vedio_width,
+                h=vedio_height,
+                supports_streaming=True,
+            )
+        ],
     )
+
 
 @bot.on(events.callbackquery.CallbackQuery(data="usei"))
 async def usei(event):
@@ -116,6 +127,7 @@ async def usei(event):
         buttons=[Button.inline("BACK", data="back")],
     )
 
+
 @bot.on(events.callbackquery.CallbackQuery(data="back"))
 async def reback(event):
     await event.edit(
@@ -123,11 +135,14 @@ async def reback(event):
         buttons=[
             [Button.inline("HOW TO USE", data="usei")],
             [
-                Button.url("SOURCE CODE", url="https://github.com/kaif-00z/YoutubeDownloderBot"),
+                Button.url(
+                    "SOURCE CODE", url="https://github.com/kaif-00z/YoutubeDownloderBot"
+                ),
                 Button.url("DEVELOPER", url="https://t.me/Kaif_00z"),
             ],
         ],
     )
+
 
 @bot.on(events.NewMessage(pattern="/eval"))
 async def eval(event):
@@ -172,9 +187,11 @@ async def eval(event):
     else:
         await event.reply(final_output)
 
+
 async def aexec(code, event):
     exec(f"async def __aexec(event): " + "".join(f"\n {l}" for l in code.split("\n")))
     return await locals()["__aexec"](event)
+
 
 @bot.on(events.NewMessage(pattern="/bash"))
 async def bash(event):
@@ -208,5 +225,6 @@ async def bash(event):
             await event.delete()
     await event.reply(OUTPUT)
 
+
 print("Bot has started...")
-bot.run_until_disconnected() 
+bot.run_until_disconnected()

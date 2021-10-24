@@ -2,7 +2,6 @@
 
 from decouple import config
 
-
 try:
     API_ID = config("API_ID", cast=int)
     API_HASH = config("API_HASH")
