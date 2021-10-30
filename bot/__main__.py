@@ -15,9 +15,10 @@ except Exception as exc:
 @bot.on(events.NewMessage(pattern="/ping"))
 async def ping(event):
     t = time.time()
-    x = await event.reply("`PONG!!!`")
+    x = await event.reply("`Pɪɴɢ!!!`")
     tt = time.time() - t
-    await x.edit(f"`PONG: {float(str(tt))*1000}ms`")
+    p = float(str(tt))*1000
+    await x.edit(f"Pɪɴɢ:{int(p)}ms")
 
 
 @bot.on(events.NewMessage(pattern="/start"))
