@@ -17,7 +17,7 @@ async def ping(event):
     t = time.time()
     x = await event.reply("`Pɪɴɢ!!!`")
     tt = time.time() - t
-    p = float(str(tt))*1000
+    p = float(str(tt)) * 1000
     await x.edit(f"Pɪɴɢ:{int(p)}ms")
 
 
