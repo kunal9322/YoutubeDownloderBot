@@ -3,6 +3,7 @@
     "description": "A Normal Telegram Bot Which can download Vedio and Audio from Youtube.",
     "keywords": ["Telegram","python", "Youtube","Downloder","Vedio","Audio"],
     "repository": "https://github.com/kaif-00z/YoutubeDownloderBot",
+    "stack": "container",
     "env": {
         "API_ID": {
             "description": "You api id, from my.telegram.org or @apiScrapperRoBot.",
