@@ -1,6 +1,6 @@
 {
     "name": "Youtube Bot",
-    "description": "A Normal Telegram Bot Which can ",
+    "description": "A Normal Telegram Bot Which can download Vedio and Audio from Youtube.",
     "keywords": ["Telegram","python", "Youtube","Downloder","Vedio","Audio"],
     "repository": "https://github.com/kaif-00z/YoutubeDownloderBot",
     "env": {
@@ -21,11 +21,5 @@
             "value": "",
             "required": false
         }
-    },
-    "buildpacks": [
-        {
-            "url": "heroku/python",
-            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
-        }
-    ]
+    }
 }

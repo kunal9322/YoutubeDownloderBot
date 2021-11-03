@@ -18,7 +18,7 @@ async def ping(event):
     x = await event.reply("`Pɪɴɢ!!!`")
     tt = time.time() - t
     p = float(str(tt)) * 1000
-    await x.edit(f"Pɪɴɢ:{int(p)}ms")
+    await x.edit(f"Pɪɴɢ: {int(p)}ms")
 
 
 @bot.on(events.NewMessage(pattern="/start"))
