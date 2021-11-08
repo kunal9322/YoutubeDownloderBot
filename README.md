@@ -11,5 +11,6 @@ if bot fetching audio and take more than 5 minutes its means Bot is crashed **so
 - `API_HASH` - **You will get your api hash, from my.telegram.org or @apiScrapperRoBot.**
 - `BOT_TOKEN` - **Make a bot from @BotFather, and enter it's api token here.**
 ## Deploy to Heroku
+#### Fork The Repository Then click on below button of your forked repository.
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
