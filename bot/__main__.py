@@ -1,7 +1,7 @@
 # by <@kaif-00z>
 
-import re
 import os
+import re
 
 from . import *
 
@@ -82,8 +82,8 @@ async def audio(event):
         audio_id = info_dict.get("id")
     audio = audio_id + ".mp3"
     os.system(f"wget https://i.ytimg.com/vi/{audio_id}/maxresdefault.jpg")
-    os.rename("maxresdefault.jpg",f"{audio_id}.jpg")
-    thumb = audio_id + ".jpg" 
+    os.rename("maxresdefault.jpg", f"{audio_id}.jpg")
+    thumb = audio_id + ".jpg"
     await bot.send_file(
         event.chat_id,
         audio,
@@ -115,8 +115,8 @@ async def vedio(event):
         video_id = info_dict.get("id")
     video = video_id + ".mp4"
     os.system(f"wget https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg")
-    os.rename("maxresdefault.jpg",f"{video_id}.jpg")
-    thumb = video_id + ".jpg" 
+    os.rename("maxresdefault.jpg", f"{video_id}.jpg")
+    thumb = video_id + ".jpg"
     await bot.send_file(
         event.chat_id,
         video,
