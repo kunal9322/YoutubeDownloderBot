@@ -1,6 +1,7 @@
 # by <@kaif-00z>
 
 import re
+import os
 
 from . import *
 
@@ -78,11 +79,16 @@ async def audio(event):
         info_dict = ydl.extract_info(link, download=False)
         audio_title = info_dict.get("title", None)
         audio_duration = info_dict.get("duration", None)
-        audio_id = info_dict.get("id") + ".mp3"
+        audio_id = info_dict.get("id")
+    audio = audio_id + ".mp3"
+    os.system(f"wget https://i.ytimg.com/vi/{audio_id}/maxresdefault.jpg")
+    os.rename("maxresdefault.jpg",f"{audio_id}.jpg")
+    thumb = audio_id + ".jpg" 
     await bot.send_file(
         event.chat_id,
-        audio_id,
+        audio,
         supports_streaming=True,
+        thumb=thumb,
         attributes=[
             DocumentAttributeAudio(
                 title=audio_title,
@@ -103,21 +109,26 @@ async def vedio(event):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([f"{link}"])
         info_dict = ydl.extract_info(link, download=False)
-        vedio_duration = info_dict.get("duration", None)
-        vedio_height = info_dict.get("height", None)
-        vedio_width = info_dict.get("width", None)
-        vedio_id = info_dict.get("id") + ".mp4"
+        video_duration = info_dict.get("duration", None)
+        video_height = info_dict.get("height", None)
+        video_width = info_dict.get("width", None)
+        video_id = info_dict.get("id")
+    video = video_id + ".mp4"
+    os.system(f"wget https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg")
+    os.rename("maxresdefault.jpg",f"{video_id}.jpg")
+    thumb = video_id + ".jpg" 
     await bot.send_file(
         event.chat_id,
-        vedio_id,
+        video,
         attributes=[
             DocumentAttributeVideo(
-                duration=vedio_duration,
-                w=vedio_width,
-                h=vedio_height,
+                duration=video_duration,
+                w=video_width,
+                h=video_height,
                 supports_streaming=True,
             )
         ],
+        thumb=thumb,
     )
 
 
