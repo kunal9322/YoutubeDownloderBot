@@ -62,7 +62,7 @@ async def yt(event):
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"audio(.*)")))
 async def audio(event):
     link = event.pattern_match.group(1).decode("UTF-8")
-    await event.edit("`fetching data from youtube...`")
+    x = await event.edit("`fetching data from youtube...`")
     ydl_opts = {
         "format": "bestaudio/best",
         "outtmpl": "%(id)s.mp3",
@@ -96,12 +96,13 @@ async def audio(event):
             )
         ],
     )
+    await x.delete()
 
 
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"vedio(.*)")))
 async def vedio(event):
     link = event.pattern_match.group(1).decode("UTF-8")
-    await event.edit("`fetching data from youtube...`")
+    x = await event.edit("`fetching data from youtube...`")
     ydl_opts = {
         "format": "best",
         "outtmpl": "%(id)s.mp4",
@@ -130,6 +131,7 @@ async def vedio(event):
         ],
         thumb=thumb,
     )
+    await x.delete()
 
 
 @bot.on(events.callbackquery.CallbackQuery(data="usei"))
