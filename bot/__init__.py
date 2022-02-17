@@ -6,7 +6,7 @@ import sys
 import time
 import traceback
 
-import youtube_dl
+from yt_dlp import YoutubeDL
 from telethon import Button, TelegramClient, errors, events
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
