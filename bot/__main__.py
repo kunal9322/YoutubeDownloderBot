@@ -49,7 +49,7 @@ async def help(event):
 async def yt(event):
     try:
         link = event.pattern_match.group(1).decode("UTF-8")
-    except:
+    except BaseException:
         link = None
     if not link:
         return await event.reply("`Plz Give a Youtube Link`")
