@@ -47,7 +47,12 @@ async def help(event):
 
 @bot.on(events.NewMessage(pattern="/yt ?(.*)"))
 async def yt(event):
-    link = event.pattern_match.group(1)
+    try:
+        link = event.pattern_match.group(1).decode("UTF-8")
+    except:
+        link = None
+    if not link:
+        return await event.reply("`Plz Give a Youtube Link`")
     await event.reply(
         "Choose what you want to do",
         buttons=[
@@ -74,7 +79,7 @@ async def audio(event):
             }
         ],
     }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with YoutubeDL(ydl_opts) as ydl:
         ydl.download([f"{link}"])
         info_dict = ydl.extract_info(link, download=False)
         audio_title = info_dict.get("title", None)
@@ -107,7 +112,7 @@ async def vedio(event):
         "format": "best",
         "outtmpl": "%(id)s.mp4",
     }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with YoutubeDL(ydl_opts) as ydl:
         ydl.download([f"{link}"])
         info_dict = ydl.extract_info(link, download=False)
         video_duration = info_dict.get("duration", None)
