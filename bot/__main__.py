@@ -47,10 +47,7 @@ async def help(event):
 
 @bot.on(events.NewMessage(pattern="/yt ?(.*)"))
 async def yt(event):
-    try:
-        link = event.pattern_match.group(1).decode("UTF-8")
-    except BaseException:
-        link = None
+    link = event.pattern_match.group(1) or None
     if not link:
         return await event.reply("`Plz Give a Youtube Link`")
     await event.reply(
