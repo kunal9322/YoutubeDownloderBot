@@ -25,14 +25,14 @@ async def ping(event):
 @bot.on(events.NewMessage(pattern="/start"))
 async def start(event):
     await event.reply(
-        f"Hi `{event.sender.first_name}`\n🛡️This is a Youtube Vedio and Audio downloader Bot🛡️.",
+        f"Hi `{event.sender.first_name}`\n🛡️𝚃𝙷𝙸𝚂 𝙸𝚜 𝙰 𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝚅𝙴𝙳𝙸𝙾 𝙰𝙽𝙳 𝙰𝚄𝙳𝙸𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝚁 𝙱𝙾𝚃🛡️.",
         buttons=[
-            [Button.inline("HOW TO USE", data="usei")],
+            [Button.inline("𝙷𝙴𝙻𝙿", data="usei")],
             [
                 Button.url(
-                    "SOURCE CODE", url="https://github.com/kaif-00z/YoutubeDownloderBot"
+                    "𝚂𝚄𝙿𝙿𝙾𝚁𝚃", url="Campus_Bot_Updates.t.me"
                 ),
-                Button.url("DEVELOPER", url="https://t.me/Kaif_00z"),
+                Button.url("𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁", url="https://t.me/MH17_KUNAL"),
             ],
         ],
     )
@@ -41,7 +41,7 @@ async def start(event):
 @bot.on(events.NewMessage(pattern="/help"))
 async def help(event):
     await event.reply(
-        "🔮This Bot Download Youtube Vedio and Audio.\n🔮Bot take some time to download plz keep patience."
+        "🔮𝚃𝙷𝙸𝚂 𝙱𝙾𝚃 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝚅𝙴𝙳𝙸𝙾 𝙰𝙽𝙳 𝙰𝚄𝙳𝙸𝙾.\n🔮𝙱𝙾𝚃 𝚃𝙰𝙺𝙴 𝚂𝙾𝙼𝙴 𝚃𝙸𝙼𝙴 𝚃𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝙺𝙴𝙴𝙿 𝙿𝙰𝚃𝙸𝙴𝙽𝙲𝙴."
     )
 
 
@@ -49,13 +49,13 @@ async def help(event):
 async def yt(event):
     link = event.pattern_match.group(1) or None
     if not link:
-        return await event.reply("`Plz Give a Youtube Link`")
+        return await event.reply("`𝙿𝙻𝚉 𝙶𝙸𝚅𝙴 𝙰 𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝙻𝙸𝙽𝙺`")
     await event.reply(
-        "Choose what you want to do",
+        "𝙲𝙷𝙾𝙾𝚂𝙴 𝚆𝙷𝙰𝚃 𝚈𝙾𝚄 𝚆𝙰𝙽𝚃 𝚃𝙾 𝙳𝙾",
         buttons=[
             [
-                Button.inline("AUDIO", data=f"audio{link}"),
-                Button.inline("VEDIO", data=f"vedio{link}"),
+                Button.inline("𝙰𝚄𝙳𝙸𝙾", data=f"audio{link}"),
+                Button.inline("𝚅𝙴𝙳𝙸𝙾", data=f"vedio{link}"),
             ],
         ],
     )
@@ -64,7 +64,7 @@ async def yt(event):
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"audio(.*)")))
 async def audio(event):
     link = event.pattern_match.group(1).decode("UTF-8")
-    x = await event.edit("`fetching data from youtube...`")
+    x = await event.edit("`𝙵𝚎𝚝𝚌𝚑𝚒𝚗𝚐 𝙳𝚊𝚝𝚊 𝙵𝚛𝚘𝚖 𝚈𝚘𝚞𝚝𝚞𝚋𝚎...`")
     ydl_opts = {
         "format": "bestaudio/best",
         "outtmpl": "%(id)s.mp3",
@@ -139,22 +139,22 @@ async def vedio(event):
 @bot.on(events.callbackquery.CallbackQuery(data="usei"))
 async def usei(event):
     await event.edit(
-        "Just send /yt with link\nLike Below:\n\t/yt https://youtube.com/...",
-        buttons=[Button.inline("BACK", data="back")],
+        "𝙹𝚄𝚂𝚃 𝚂𝙴𝙽𝙳 /𝚢𝚝 𝚆𝙸𝚃𝙷 𝙻𝙸𝙽𝙺\nLike 𝙱𝙴𝙻𝙾𝚆:\n\t/yt https://youtube.com/...",
+        buttons=[Button.inline("𝙱𝙰𝙲𝙺", data="back")],
     )
 
 
 @bot.on(events.callbackquery.CallbackQuery(data="back"))
 async def reback(event):
     await event.edit(
-        f"Hi `{event.sender.first_name}`\n🛡️This is a Youtube Vedio and Audio downloader Bot🛡️.",
+        f"Hi `{event.sender.first_name}`\n🛡️𝚃𝙷𝙸𝚂 𝙸𝚜 𝙰 𝚈𝙾𝚄𝚃𝚄𝙱𝙴 𝚅𝙴𝙳𝙸𝙾 𝙰𝙽𝙳 𝙰𝚄𝙳𝙸𝙾 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝚁 𝙱𝙾𝚃🛡️.",
         buttons=[
-            [Button.inline("HOW TO USE", data="usei")],
+            [Button.inline("𝙷𝙴𝙻𝙿", data="usei")],
             [
                 Button.url(
-                    "SOURCE CODE", url="https://github.com/kaif-00z/YoutubeDownloderBot"
+                    "𝚂𝚄𝙿𝙿𝙾𝚁𝚃", url="Campus_Bot_Updates.t.me"
                 ),
-                Button.url("DEVELOPER", url="https://t.me/Kaif_00z"),
+                Button.url("𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁", url="https://t.me/MH17_KUNAL"),
             ],
         ],
     )
@@ -164,7 +164,7 @@ async def reback(event):
 async def eval(event):
     if event.sender_id != OWNER:
         return
-    await event.reply("Processing ...")
+    await event.reply("`Processing ...`")
     cmd = event.text.split(" ", maxsplit=1)[1]
     old_stderr = sys.stderr
     old_stdout = sys.stdout
